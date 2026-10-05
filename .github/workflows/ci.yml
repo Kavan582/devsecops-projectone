@@ -1,47 +1,26 @@
 name: CI
 
-
-
 on:
-
   push:
-
     branches:
-
       - main
-
-
 
   pull_request:
-
     branches:
-
       - main
 
-
-
 jobs:
-
-  test:
-
+  build:
     runs-on: ubuntu-latest
-
-
 
     steps:
 
-
-
       - name: Checkout code
-
         uses: actions/checkout@v4
 
+      - name: Docker version
+        run: docker --version
 
-
-      - name: Show project files
-
+      - name: Build Docker image
         run: |
-
-          echo "GitHub Actions is working"
-
-          ls -la
+          docker build -t devsecops-projectone:latest .
